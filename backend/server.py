@@ -76,7 +76,7 @@ class StepExplanation(BaseModel):
     advanced_explanation: str
 
 # Initialize architecture data
-@api_router.on_event("startup")
+@app.on_event("startup")
 async def initialize_architecture_data():
     """Initialize the database with Roblox architecture components"""
     
