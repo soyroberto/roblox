@@ -1,0 +1,40 @@
+{
+  "name": "roblox-architecture-explained",
+  "version": "1.0.0",
+  "description": "Interactive web application explaining how Roblox handles 26 million concurrent players",
+  "scripts": {
+    "dev": "concurrently \"cd backend && uvicorn server:app --reload --host 0.0.0.0 --port 8001\" \"cd frontend && yarn start\"",
+    "install-all": "cd backend && pip install -r requirements.txt && cd ../frontend && yarn install",
+    "build": "cd frontend && yarn build",
+    "test": "cd backend && python -m pytest && cd ../frontend && yarn test --watchAll=false",
+    "start:backend": "cd backend && uvicorn server:app --host 0.0.0.0 --port 8001",
+    "start:frontend": "cd frontend && yarn start",
+    "deploy:azure": "cd frontend && yarn build && az storage blob upload-batch --account-name robloxarchitecturestorage --source build --destination '$web'",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/roblox-architecture-explained.git"
+  },
+  "keywords": [
+    "roblox",
+    "distributed-systems",
+    "architecture",
+    "education",
+    "react",
+    "fastapi",
+    "mongodb",
+    "scalability"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
