@@ -57,6 +57,11 @@ class ArchitectureComponent(BaseModel):
     step_order: int
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
+class CapacityCalculationInput(BaseModel):
+    component_id: str
+    calculation_type: str
+    inputs: Dict[str, Any]
+
 class CapacityCalculation(BaseModel):
     component_id: str
     calculation_type: str
