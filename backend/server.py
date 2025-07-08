@@ -435,7 +435,7 @@ async def get_step(step_number: int):
     return StepExplanation(**step)
 
 @api_router.post("/calculate-capacity")
-async def calculate_capacity(calculation: CapacityCalculation):
+async def calculate_capacity(calculation: CapacityCalculationInput):
     """Calculate capacity metrics for a component"""
     component = await db.components.find_one({"id": calculation.component_id})
     if not component:
