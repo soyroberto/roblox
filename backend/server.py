@@ -446,15 +446,15 @@ async def calculate_capacity(calculation: CapacityCalculationInput):
     if component["type"] == ComponentType.GAME_SERVER:
         players = calculation.inputs.get("concurrent_players", 26000000)
         players_per_server = calculation.inputs.get("players_per_server", 100)
-        servers_needed = players / players_per_server
+        servers_needed = math.ceil(players / players_per_server)
         
         result = {
-            "servers_needed": int(servers_needed),
-            "cpu_cores_total": int(servers_needed * 4),
-            "memory_gb_total": int(servers_needed * 8),
-            "network_gbps": int(servers_needed * 0.1)
+            "servers_needed": servers_needed,
+            "cpu_cores_total": servers_needed * 4,
+            "memory_gb_total": servers_needed * 8,
+            "network_gbps": servers_needed * 0.1
         }
-        explanation = f"For {players:,} concurrent players with {players_per_server} players per server, you need {int(servers_needed):,} game servers."
+        explanation = f"For {players:,} concurrent players with {players_per_server} players per server, you need {servers_needed:,} game servers."
     
     elif component["type"] == ComponentType.DATABASE:
         reads_per_second = calculation.inputs.get("reads_per_second", 2000000)
